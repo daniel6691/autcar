@@ -5,8 +5,8 @@
     <title>AutCar - Control Board</title>
 
     <!-- Scripts -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
     
     <script>
         function cmd(cmd) {
@@ -68,6 +68,35 @@
 
         }
 
+        function init(){
+            document.body.onkeydown = function(argEvent){
+                switch( argEvent.keyCode ){
+                    case 32:
+                        argEvent.stopPropagation();
+                        cmd('stop');
+                        break;
+                    case 37:
+                        argEvent.stopPropagation();
+                        argEvent.ctrlKey ? cmd('lefthard') : cmd('leftlight');
+                        break;
+                    case 38:
+                        argEvent.stopPropagation();
+                        argEvent.ctrlKey ? cmd('faster') : cmd('fast');
+                        break;
+                    case 39:
+                        argEvent.stopPropagation();
+                        argEvent.ctrlKey ? cmd('righthard') : cmd('rightlight');
+                        break;
+                    case 40:
+                        argEvent.stopPropagation();
+                        cmd('backwards');
+                        break;
+                    default:
+                    // do nothing
+                }
+            }
+        }
+
     </script>
 
     <!-- Stylesheets -->
@@ -94,7 +123,7 @@
     </style>
 
 </head>
-<body class="win-type-body">
+<body class="win-type-body" onload="init();">
 
     <div class="container-fluid flex-column d-flex h-100 bg-faded" style="padding:0px;">
     <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse" style="position:relative;background-color:black;">
