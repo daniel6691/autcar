@@ -4,6 +4,7 @@ import time
 rc = RemoteController()
 car = Car()
 cam = Camera(rotation=-1)
+cam.start()
 cap = Capture(car, cam, capture_interval=2)
 
 rc.listen()
